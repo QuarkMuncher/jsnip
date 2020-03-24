@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <!--All included libraries-->
+  <link rel="stylesheet" href="./src/css/uikit.min.css"/>
+  <link rel="stylesheet" href="./src/css/homemade.css"/>
+  <script src="./src/js/uikit.min.js"></script>
+  <script src="./src/js/uikit-icons.min.js"></script>
+  <script src="./src/js/updater.js"></script>
+</head>
+<body>
+<!--Navbar-->
+<nav class="uk-navbar-container" uk-navbar>
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      <li>
+        <a href="#">Two Columns</a>
+        <div class="uk-navbar-dropdown uk-navbar-dropdown-width-1">
+          <div class="uk-navbar-dropdown-grid uk-child-width-1-1" uk-grid>
+            <div>
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li class="uk-active"><a href="#links">Active</a></li>
+                <li><a href="#">Item</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--!!Navbar-->
+
+<!--Content-->
+<!--Container-->
+<div class="uk-container">
+  <!--Links section-->
+  <div class="uk-card uk-card-default uk-card-body">
+    <h1 class="uk-heading-medium">Links</h1>
+    <form>
+      <fieldset class="uk-fieldset">
+        <legend class="uk-legend">Options</legend>
+        <div class="uk-margin">
+          <input
+            id="linkWebAddressInput"
+            class="uk-input"
+            type="text"
+            placeholder="Web Adress"
+          />
+        </div>
+        <div class="uk-margin">
+          <input
+            id="linkText"
+            class="uk-input"
+            type="text"
+            placeholder="Link Text"
+          />
+        </div>
+        <div class="uk-margin">
+          <label
+          ><input id="newTab" class="uk-checkbox" type="checkbox"/> Opens
+            New Tab</label
+          >
+        </div>
+      </fieldset>
+    </form>
+
+    <!--Link field-->
+    <form>
+      <fieldset class="uk-fieldset">
+        <div class="uk-inline uk-width-1-1">
+          <a
+            id="linkCopy"
+            class="uk-form-icon uk-form-icon-flip animated"
+            uk-icon="icon: copy"
+          ></a>
+          <input
+            id="link"
+            class="uk-input"
+            type="text"
+            value='<a href="Link address">This is the displayed text of the link</a>'
+            readonly
+          />
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <!--Links section-->
+
+  <!--Unordered List section-->
+  <div class="uk-card uk-card-default uk-card-body">
+    <h1 class="uk-heading-medium">Unordered List</h1>
+    <form>
+      <fieldset class="uk-fieldset">
+        <legend class="uk-legend">Options</legend>
+        <div id="unorderedListEditorField">
+          <div class="uk-margin">
+            <input class="uk-input unorderedListElement" placeholder="Text here"/>
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <a
+            href="#"
+            id="unorderedListAddButton"
+            class="uk-button uk-button-primary uk-button-small"
+          >
+            Add an items
+          </a>
+        </div>
+      </fieldset>
+    </form>
+
+    <form>
+      <fieldset class="uk-fieldset">
+        <div class="uk-inline uk-width-1-1">
+          <label class="uk-legend" for="unorderedList">Code</label>
+          <div class="uk-position-top-right uk-margin-small">
+            <ul class="uk-iconnav">
+              <li><a id="unorderedListCopy" uk-icon="icon: copy"></a></li>
+            </ul>
+          </div>
+
+          <textarea
+            id="unorderedList"
+            class="uk-input"
+            type="text"
+            readonly
+          ></textarea>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <!--Unordered List section-->
+</div>
+<!--!!Container-->
+</body>
+</html>

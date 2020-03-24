@@ -22,7 +22,7 @@
           <div class="uk-navbar-dropdown-grid uk-child-width-1-1" uk-grid>
             <div>
               <ul class="uk-nav uk-navbar-dropdown-nav">
-                <li class="uk-active"><a href="#links">Active</a></li>
+                <li class="uk-active"><a href="#links">Links</a></li>
                 <li><a href="#">Item</a></li>
               </ul>
             </div>
@@ -39,7 +39,7 @@
 <div class="uk-container">
   <!--Links section-->
   <div class="uk-card uk-card-default uk-card-body">
-    <h1 class="uk-heading-medium">Links</h1>
+    <h1 class="uk-heading-medium" id="links">Links</h1>
     <form>
       <fieldset class="uk-fieldset">
         <legend class="uk-legend">Options</legend>
@@ -53,7 +53,7 @@
         </div>
         <div class="uk-margin">
           <input
-            id="linkText"
+            id="linkContentString"
             class="uk-input"
             type="text"
             placeholder="Link Text"
@@ -61,7 +61,7 @@
         </div>
         <div class="uk-margin">
           <label
-          ><input id="newTab" class="uk-checkbox" type="checkbox"/> Opens
+          ><input id="linkTargetBlank" class="uk-checkbox" type="checkbox"/> Opens
             New Tab</label
           >
         </div>
@@ -78,7 +78,7 @@
             uk-icon="icon: copy"
           ></a>
           <input
-            id="link"
+            id="linkStringForCopy"
             class="uk-input"
             type="text"
             value='<a href="Link address">This is the displayed text of the link</a>'
@@ -105,7 +105,7 @@
         <div class="uk-margin">
           <a
             href="#"
-            id="unorderedListAddButton"
+            id="unorderedListAddElementButton"
             class="uk-button uk-button-primary uk-button-small"
           >
             Add an items
@@ -117,7 +117,7 @@
     <form>
       <fieldset class="uk-fieldset">
         <div class="uk-inline uk-width-1-1">
-          <label class="uk-legend" for="unorderedList">Code</label>
+          <label class="uk-legend" for="unorderedListStringForCopy">Code</label>
           <div class="uk-position-top-right uk-margin-small">
             <ul class="uk-iconnav">
               <li><a id="unorderedListCopy" uk-icon="icon: copy"></a></li>
@@ -125,7 +125,7 @@
           </div>
 
           <textarea
-            id="unorderedList"
+            id="unorderedListStringForCopy"
             class="uk-input"
             type="text"
             readonly

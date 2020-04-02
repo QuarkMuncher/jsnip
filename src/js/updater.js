@@ -1,7 +1,3 @@
-/* Links section
-*   Objects relevant to the link generator
-*/
-// This object contains all of the link generators elements.
 let linkElements = {
     linkStringForCopy: '',
     linkWebAddressInput: '',
@@ -9,7 +5,7 @@ let linkElements = {
     linkTargetBlank: '',
     linkCopy: '',
 };
-// This object contains all relevant parameters for producing the contents for the linkStringForCopy element.
+
 let linkState = {
     linkWebAddressInput: 'Link address',
     linkContentString: 'This is the displayed text of the link',
@@ -24,15 +20,10 @@ let unorderedListElements = {
 };
 let unorderedListArray = [];
 
-// Waiting until the DOM tree is loaded, and then searching for
-// Elements that we need to have access to throughout the code.
 document.addEventListener('DOMContentLoaded', () => {
-    // Links section
     findDocumentElements(linkElements);
-    // Unordered List section
     findDocumentElements(unorderedListElements);
 
-    // Links sections
     linkElements.linkWebAddressInput.addEventListener('input', e => {
         linkState.linkWebAddressInput = e.target.value;
         updateLink();
@@ -48,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLink();
     });
 
-    linkElements.linkCopy.addEventListener('click', e => {
+    linkElements.linkCopy.addEventListener('click', () => {
         copyCode(linkElements.linkStringForCopy);
         linkElements.linkCopy.classList.add('active');
         window.setTimeout(() => {
@@ -56,25 +47,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1200);
     });
 
-    // Unordered List section
     unorderedListElements.unorderedListAddElementButton.addEventListener('click', e => {
         e.preventDefault();
         addUnorderedListItem();
     });
 
-    document.querySelector('.unorderedListElement').addEventListener('input', e => {
+    document.querySelector('.unorderedListElement').addEventListener('input', () => {
         updateUnorderedListArray();
     });
 });
 
-// Links section
 function updateLink() {
     let linkTargetBlankValue = '';
     if (linkState.linkTargetBlank) linkTargetBlankValue = 'target="_blank"';
     linkElements.linkStringForCopy.value = `<a href="${linkState.linkWebAddressInput}" ${linkTargetBlankValue}>${linkState.linkContentString}</a>`;
 }
 
-// Unordered List section
 function updateUnorderedListCode() {
     let listCode = '<ul>';
     for (let i = 0; i < unorderedListArray.length; i++) {
@@ -93,7 +81,7 @@ function addUnorderedListItem() {
     let inputElement = document.createElement('input');
     inputElement.className = 'uk-input';
     inputElement.classList.add('unorderedListElement');
-    inputElement.addEventListener('input', e => {
+    inputElement.addEventListener('input', () => {
         updateUnorderedListCode();
     });
     let marginElement = document.createElement('div');
@@ -103,7 +91,6 @@ function addUnorderedListItem() {
     updateUnorderedListArray();
 }
 
-// Used for all.
 function copyCode(target) {
     target.select();
     document.execCommand('copy');

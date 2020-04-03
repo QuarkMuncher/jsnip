@@ -1,3 +1,22 @@
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+a.hk-ticker {
+  background-color: #4d4e53;
+  padding: 0 10px;
+}
+
+div.hk-orderedListElement > input[type=number] {
+  width: 20%;
+}
+
 .animated {
   transition: all 2s ease;
 }

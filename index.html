@@ -120,7 +120,7 @@
           <label class="uk-legend" for="unorderedListStringForCopy">Code</label>
           <div class="uk-position-top-right uk-margin-small">
             <ul class="uk-iconnav">
-              <li><a id="unorderedListCopy" uk-icon="icon: copy"></a></li>
+              <li><a id="unorderedListCopyButton" uk-icon="icon: copy"></a></li>
             </ul>
           </div>
 
@@ -135,6 +135,52 @@
     </form>
   </div>
   <!--Unordered List section-->
+
+  <!--Ordered List section-->
+  <div class="uk-card uk-card-default uk-card-body">
+    <h1 class="uk-heading-medium">Ordered List</h1>
+    <form>
+      <fieldset class="uk-fieldset">
+        <legend class="uk-legend">Options</legend>
+        <div id="orderedListEditorField">
+          <div class="uk-margin">
+            <input class="uk-input orderedListElement" placeholder="Text here"/>
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <a
+                  href="#"
+                  id="orderedListAddElementButton"
+                  class="uk-button uk-button-primary uk-button-small"
+          >
+            Add an items
+          </a>
+        </div>
+      </fieldset>
+    </form>
+
+    <form>
+      <fieldset class="uk-fieldset">
+        <div class="uk-inline uk-width-1-1">
+          <label class="uk-legend" for="orderedListStringForCopy">Code</label>
+          <div class="uk-position-top-right uk-margin-small">
+            <ul class="uk-iconnav">
+              <li><a id="orderedListCopy" uk-icon="icon: copy"></a></li>
+            </ul>
+          </div>
+
+          <textarea
+                  id="orderedListStringForCopy"
+                  class="uk-input"
+                  type="text"
+                  readonly
+          ></textarea>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <!--Ordered List section-->
 </div>
 <!--!!Container-->
 </body>

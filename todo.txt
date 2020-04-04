@@ -1,2 +1,2 @@
-TODO: Finish Ordered list code, will be pretty much a copy of unordered list
 TODO: Comment every function and method
+TODO: Fix navbar

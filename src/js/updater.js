@@ -13,38 +13,59 @@ let linkState = {
 };
 
 let unorderedList = {
-    unorderedListElements: {
+    elements: {
         unorderedListEditorField: '',
         unorderedListAddElementButton: '',
+        unorderedListExample: '',
         unorderedListCopyButton: '',
         unorderedListStringForCopy: '',
     },
-    unorderedListArray: [],
+    listArray: [],
     /**
      * Updates the code string for unorderedList.unorderedListStringForCopy
      * @return {void} - Returns Nothing
      */
     updateMethod: function() {
+        this.elements.unorderedListExample.innerHTML = '';
         let listCode = '<ul>';
-        for (let i = 0; i < unorderedList.unorderedListArray.length; i++) {
-            listCode = listCode + `<li>${unorderedList.unorderedListArray[i].value}</li>`;
+        for (let i = 0; i < this.listArray.length; i++) {
+            listCode = listCode + `<li>${this.listArray[i].value}</li>`;
+            let liElement = document.createElement('li');
+            liElement.innerHTML = this.listArray[i].value;
+            this.elements.unorderedListExample.appendChild(liElement);
         }
         listCode = listCode + '</ul>';
-        unorderedList.unorderedListElements.unorderedListStringForCopy.innerHTML = listCode;
+        this.elements.unorderedListStringForCopy.innerHTML = listCode;
     },
 };
 
-let orderedListElements = {
-    orderedListEditorField: '',
-    orderedListAddElementButton: '',
-    orderedListStringForCopy: '',
-    orderedListArray: [],
+let orderedList = {
+    elements: {
+        orderedListEditorField: '',
+        orderedListAddElementButton: '',
+        orderedListExample: '',
+        orderedListCopyButton: '',
+        orderedListStringForCopy: '',
+    },
+    listArray: [],
+    updateMethod: function() {
+        this.elements.orderedListExample.innerHTML = '';
+        let listCode = '<ol>';
+        for (let i = 0; i < this.listArray.length; i++) {
+            listCode = listCode + `<li>${this.listArray[i].value}</li>`;
+            let liElement = document.createElement('li');
+            liElement.innerHTML = this.listArray[i].value;
+            this.elements.orderedListExample.appendChild(liElement);
+        }
+        listCode = listCode + '</ol>';
+        this.elements.orderedListStringForCopy.innerHTML = listCode;
+    },
 };
 
 document.addEventListener('DOMContentLoaded', () => {
     findDocumentElements(linkElements);
-    findDocumentElements(unorderedList.unorderedListElements);
-    findDocumentElements(orderedListElements);
+    findDocumentElements(unorderedList.elements);
+    findDocumentElements(orderedList.elements);
 
     linkElements.linkWebAddressInput.addEventListener('input', e => {
         linkState.linkWebAddressInput = e.target.value;
@@ -63,27 +84,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     linkElements.linkCopy.addEventListener('click', () => {
         copyCode(linkElements.linkStringForCopy);
-        linkElements.linkCopy.classList.add('active');
-        window.setTimeout(() => {
-            linkElements.linkCopy.classList.remove('active');
-        }, 1200);
-    });
-method
-    unorderedList.unorderedListElements.unorderedListAddElementButton.addEventListener('click', e => {
-        e.preventDefault();
-        addUnorderedListItem();
     });
 
-    unorderedList.unorderedListElements.unorderedListCopyButton.addEventListener('click', () => {
-        copyCode(unorderedList.unorderedListElements.unorderedListStringForCopy);
-        unorderedList.unorderedListElements.unorderedListCopyButton.classList.add('active');
-        window.setTimeout(() => {
-            unorderedList.unorderedListElements.unorderedListCopyButton.classList.remove('active');
-        }, 1200);
+    unorderedList.elements.unorderedListAddElementButton.addEventListener('click', e => {
+        e.preventDefault();
+        addListItem(unorderedList, unorderedList.elements.unorderedListEditorField, 'unorderedListElement');
+    });
+
+    unorderedList.elements.unorderedListCopyButton.addEventListener('click', () => {
+        copyCode(unorderedList.elements.unorderedListStringForCopy);
     });
 
     document.querySelector('.unorderedListElement').addEventListener('input', () => {
         updateElementArray(unorderedList, '.unorderedListElement');
+    });
+
+    orderedList.elements.orderedListAddElementButton.addEventListener('click', e=> {
+        e.preventDefault();
+        addListItem(orderedList, orderedList.elements.orderedListEditorField, 'orderedListElement');
+    });
+
+    orderedList.elements.orderedListCopyButton.addEventListener('click', () => {
+       copyCode(orderedList.elements.orderedListStringForCopy);
+    });
+
+    document.querySelector('.orderedListElement').addEventListener('input', () => {
+        updateElementArray(orderedList, '.orderedListElement');
     });
 });
 
@@ -103,24 +129,27 @@ function updateLink() {
  * @param {string} cl - classname to query the tree for
  */
 function updateElementArray(object, cl) {
-    object.unorderedListArray = document.querySelectorAll(cl);
+    object.listArray = document.querySelectorAll(cl);
     object.updateMethod();
 }
 
 /**
- * Creates a new unordered list item to Editor, and calls updateUnorderedListArray
+ * Creates a new list item to Editor, and calls updateElementArray
+ * @param {object} parentObject - The parent object, needed in updateElementArray call
+ * @param {object} object - The editorField Object
+ * @param {string} cl - String containing the desired classname
  * @return {void} - Returns Nothing
  */
-function addUnorderedListItem() {
+function addListItem(parentObject, object, cl) {
     let inputElement = document.createElement('input');
     inputElement.className = 'uk-input';
-    inputElement.classList.add('unorderedListElement');
+    inputElement.classList.add(cl);
     let marginElement = document.createElement('div');
     marginElement.className = 'uk-margin';
     marginElement.appendChild(inputElement);
-    unorderedList.unorderedListElements.unorderedListEditorField.appendChild(marginElement);
+    object.appendChild(marginElement);
     inputElement.addEventListener('input', () => {
-        updateElementArray(unorderedList, '.unorderedListElement');
+        updateElementArray(parentObject, `.${cl}`);
     });
 }
 
